@@ -13,14 +13,14 @@ include "parameters.php";
     <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Nuovo Cinema Paradiso</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="#">Film</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -48,32 +48,38 @@ include "parameters.php";
     </div>
     </nav>
     
+    <div class="row">
+
     
-            <?php
+    <?php
 
-            $connect = mysqli_connect($servername, $username, $password)
-                or die("Connessione non riuscita " . mysqli_error($connect));
+    $connect = mysqli_connect($servername, $username, $password)
+        or die("Connessione non riuscita " . mysqli_error($connect));
 
-            mysqli_select_db($connect, $database)
-                or die("Impossibile selezione il database " . mysqli_error($connect));
+    mysqli_select_db($connect, $database)
+        or die("Impossibile selezione il database " . mysqli_error($connect));
 
-            # Lista dei film
-            $query = "SELECT F.Titolo, F.Regista, F.Genere FROM 001_FILM as F";
-            $result = mysqli_query($connect, $query)
-                or die ("Errore nella query <br>" . mysqli_error($connect));
-
-            while($search = mysqli_fetch_array($result)){
-                print('<div class="card text-bg-dark my-2">');
-                    print('<img src="images/fantozzi.jpg" class="card-img" alt="...">');
-                    print('<div class="card-img-overlay">');
-                        print("<h5 class='card-title'>$search[Titolo]</h5>");
-                        print("<p class='card-text'>$search[Regista]</p>");
-                        print("<p class='card-text'><small>$search[Genere]</small></p>");
-                    print("</div>");
-                print("</div>");
-            }   
-            ?>
+    # Lista dei film
+    $query = "SELECT F.Titolo, F.Regista, F.Genere FROM 001_FILM as F";
+    $result = mysqli_query($connect, $query)
+        or die ("Errore nella query <br>" . mysqli_error($connect));
+        
     
+    while($search = mysqli_fetch_array($result)){
+        print('<div class="col my-2 mx-1">');
+        print('<div class="card" style="width: 18rem;">');
+            print("<img src='images/$search[Titolo].jpg' class='card-img-top'>");
+            print('<div class="card-body">');
+                print("<h5 class='card-title'>$search[Titolo]</h5>");
+                print("<p class='card-text'>$search[Regista]</p>");
+                print("<p class='card-text'><small>$search[Genere]</small></p>");
+            print("</div>");
+        print("</div>");
+        print("</div>");
+    }   
+    ?>
+    
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>
