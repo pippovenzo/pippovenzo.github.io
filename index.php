@@ -14,7 +14,7 @@ include "parameters.php";
     <body style="background-color:#323232;">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Nuovo Cinema Paradiso</a>
+        <a class="navbar-brand" href="index.php">Nuovo Cinema Paradiso</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,10 +32,6 @@ include "parameters.php";
             </a>
             </li>
         </ul>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
         </div>
     </div>
     </nav>
@@ -58,14 +54,12 @@ include "parameters.php";
         
     
     while($search = mysqli_fetch_array($result)){
-        $Titolo = $search[Titolo];
         print('<div class="col my-2 mx-1">');
         print("<form method='get' name='form' action='details.php'>");
-        print("<div class='card border-0' style='width: 18rem;' onclick=showDetails('$Titolo');>");
+        print("<div class='card border-0' style='width: 18rem;'>");
             print("<img src='images/$search[Titolo].jpg' class='card-img-top'>");
             print('<div class="card-body">');
-            print("<input type='submit' value='$Titolo' name='Titolo'>");
-                print("<h5 class='card-title'>$search[Titolo]</h5>");
+                print("<h5 class='card-title'><input type='submit' value='$search[Titolo]' name='Titolo'></h5>");
                 print("<p class='card-text'><span style='color:red;'>Regista: </span>$search[Regista]</p>");
                 print("<p class='card-text'><small><span style='color:red;'>Genere: </span>$search[Genere]</small></p>");
             print("</div>");
