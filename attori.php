@@ -53,14 +53,19 @@ include "parameters.php"
         
     
     while($search = mysqli_fetch_array($result)){
-        print('<div class="col my-2 mx-1">');
-        print('<div class="card border-0" style="width: 18rem;">');
-            print("<img src='images/$search[Nome].jpg' class='card-img-top'>");
-            print('<div class="card-body">');
-                print("<h5 class='card-title'>$search[Nome]</h5>");
-                print("</div>");
-        print("</div>");
-        print("</div>");
+        ?>
+        <div class="col my-2 mx-1">
+        <div class="card border-0" style="width: 18rem;">
+            <img src='images/<?php print("$search[Nome].jpg");?>' class='card-img-top'>
+            <div class="card-body">
+                <form method='get' name='form' action='details.php'>
+                <input type="hidden" name="Tipo" value="2" /> 
+                    <h5 class='card-title'><input type='submit' value="<?php print("$search[Nome]");?>" name='Titolo'></h5>
+                </form>
+            </div>
+        </div>
+        </div>
+    <?php
     }   
     ?>
     </div>

@@ -54,20 +54,24 @@ include "parameters.php";
         
     
     while($search = mysqli_fetch_array($result)){
-        print('<div class="col my-2 mx-1">');
-        print("<form method='get' name='form' action='details.php'>");
-        print("<div class='card border-0' style='width: 18rem;'>");
-            print("<img src='images/$search[Titolo].jpg' class='card-img-top'>");
-            print('<div class="card-body">');
-                print("<h5 class='card-title'><input type='submit' value='$search[Titolo]' name='Titolo'></h5>");
-                print("<p class='card-text'><span style='color:red;'>Regista: </span>$search[Regista]</p>");
-                print("<p class='card-text'><small><span style='color:red;'>Genere: </span>$search[Genere]</small></p>");
-            print("</div>");
-        print("</div>");
-        print("</form>");
-        print("</div>");
+        ?>
+        <div class="col my-2 mx-1">
+        <form method='get' name='form' action='details.php'>
+        <input type="hidden" name="Tipo" value="1" /> 
+        <div class='card border-0' style='width: 18rem;'>
+            <img src='images/<?php print("$search[Titolo].jpg");?>' class='card-img-top'>
+            <div class="card-body">
+                <h5 class='card-title'><input type='submit' value="<?php print("$search[Titolo]");?>" name='Titolo'></h5>
+                <p class='card-text'><span style='color:red;'>Regista: </span><?php print("$search[Regista]");?> </p>
+                <p class='card-text'><small><span style='color:red;'>Genere: </span><?php print("$search[Genere]");?></small></p>
+            </div>
+        </div>
+        </form>
+        </div>
+    <?php
     }   
     ?>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>

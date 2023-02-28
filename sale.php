@@ -52,15 +52,17 @@ include "parameters.php"
         
     
     while($search = mysqli_fetch_array($result)){
-        print('<div class="col my-2 mx-1">');
-        print('<div class="card border-0" style="width: 18rem;">');
-            print("<img src='images/$search[Nome].jpg' class='card-img-top'>");
-            print('<div class="card-body">');
-                print("<h5 class='card-title'>$search[Nome]</h5>");
-                print("<p class='card-text'><span style='color:red;'>Citta: </span>$search[Citta]</p>");
-                print("</div>");
-        print("</div>");
-        print("</div>");
+        ?>
+        <div class="col my-2 mx-1">
+        <div class="card border-0" style="width: 18rem;">
+        <img src="images/<?php print("$search[Nome].jpg");?>" class='card-img-top'>
+            <div class="card-body">
+                <h5 class='card-title'><?php print("$search[Nome]") ?></h5>
+                <p class='card-text'><span style='color:red;'>Citta: </span><?php print("$search[Citta]"); ?></p>
+                </div>
+        </div>
+        </div>
+        <?php
     }   
     ?>
     </div>

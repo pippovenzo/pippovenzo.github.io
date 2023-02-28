@@ -15,7 +15,12 @@ include "parameters.php";
     
     <div class="row mx-5">    
     <?php
-    $Titolo = $_GET["Titolo"];
+    try {
+        $tipo = $_GET["Tipo"];
+        $Titolo = $_GET["Titolo"];
+    } catch (\Throwable $th) {
+        die("troio");
+    }
 
     $connect = mysqli_connect($servername, $username, $password)
         or die("Connessione non riuscita " . mysqli_error($connect));
@@ -24,26 +29,52 @@ include "parameters.php";
         or die("Impossibile selezione il database " . mysqli_error($connect));
 
     # Lista dei film
-    $query = "SELECT F.Titolo, F.Regista, F.Genere, F.AnnoProduzione, F.Nazionalita, F.Durata, A.Nome FROM 001_FILM AS F, 001_ATTORI AS A, 001_RECITA AS R
-             WHERE F.Titolo = '$Titolo' AND F.CodFilm = R.CodFilm AND A.CodAttore = R.CodAttore";
-    $result = mysqli_query($connect, $query)
-        or die ("Errore nella query <br>" . mysqli_error($connect));
+    switch ($tipo) {
+        case 1:
+            $query = "SELECT F.Titolo, F.Regista, F.Genere, F.AnnoProduzione, F.Nazionalita, F.Durata, A.Nome FROM 001_FILM AS F, 001_ATTORI AS A, 001_RECITA AS R
+                 WHERE F.Titolo = '$Titolo' AND F.CodFilm = R.CodFilm AND A.CodAttore = R.CodAttore";
+            $result = mysqli_query($connect, $query)
+                or die ("Errore nella query <br>" . mysqli_error($connect));
 
-    while($search = mysqli_fetch_array($result)){
-        print('<div class="col my-2 mx-5">');
-        print("<div class='card border-0' style='width: 18rem;'>");
-            print("<img src='images/$search[Titolo].jpg' class='card-img-top'>");
-            print('<div class="card-body">');
-                print("<h5 class='card-title'>$search[Titolo]</h5>");
-                print("<p class='card-text'><span style='color:red;'>Regista: </span>$search[Regista]</p>");
-                print("<p class='card-text'><small><span style='color:red;'>Genere: </span>$search[Genere]</small></p>");
-                print("<p class='card-text'><small><span style='color:red;'>Anno: </span>$search[AnnoProduzione]</small></p>");
-                print("<p class='card-text'><small><span style='color:red;'>Nazionalità: </span>$search[Nazionalita]</small></p>");
-                print("<p class='card-text'><small><span style='color:red;'>Durata: </span>$search[Durata] minuti</small></p>");
-                print("<p class='card-text'><small><span style='color:red;'>Attore principale: </span><a href='attori.php'>$search[Nome]</a></small></p>");
-            print("</div>");
-        print("</div>");
-        print("</div>");
+            while($search = mysqli_fetch_array($result)){
+                print('<div class="col my-2 mx-5">');
+                print("<div class='card border-0' style='width: 18rem;'>");
+                    print("<img src='images/$search[Titolo].jpg' class='card-img-top'>");
+                    print('<div class="card-body">');
+                        print("<h5 class='card-title'>$search[Titolo]</h5>");
+                        print("<p class='card-text'><span style='color:red;'>Regista: </span>$search[Regista]</p>");
+                        print("<p class='card-text'><small><span style='color:red;'>Genere: </span>$search[Genere]</small></p>");
+                        print("<p class='card-text'><small><span style='color:red;'>Anno: </span>$search[AnnoProduzione]</small></p>");
+                        print("<p class='card-text'><small><span style='color:red;'>Nazionalità: </span>$search[Nazionalita]</small></p>");
+                        print("<p class='card-text'><small><span style='color:red;'>Durata: </span>$search[Durata] minuti</small></p>");
+                        print("<p class='card-text'><small><span style='color:red;'>Attore principale: </span><a href='attori.php'>$search[Nome]</a></small></p>");
+                    print("</div>");
+                print("</div>");
+                print("</div>");
+            }
+            break;
+
+        case 2:
+            $query = "SELECT * FROM 001_ATTORI WHERE Nome = '$Titolo'";
+            $result = mysqli_query($connect, $query)
+                or die ("Errore nella query <br>" . mysqli_error($connect));
+
+            while($search = mysqli_fetch_array($result)){
+                print('<div class="col my-2 mx-5">');
+                print("<div class='card border-0' style='width: 18rem;'>");
+                    print("<img src='images/$search[Nome].jpg' class='card-img-top'>");
+                    print('<div class="card-body">');
+                        print("<h5 class='card-title'>$search[Nome]</h5>");
+                        print("<p class='card-text'><span style='color:red;'>Anno di Nascita: </span>$search[AnnoNascita]</p>");
+                        print("<p class='card-text'><span style='color:red;'>Nazionalità: </span>$search[Nazionalita]</p>");
+                    print("</div>");
+                print("</div>");
+                print("</div>");
+            }
+            break;
+
+        default:
+            die("troio");
     }
     
     ?>
