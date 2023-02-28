@@ -24,7 +24,8 @@ include "parameters.php";
         or die("Impossibile selezione il database " . mysqli_error($connect));
 
     # Lista dei film
-    $query = "SELECT * FROM 001_FILM WHERE Titolo = '$Titolo'";
+    $query = "SELECT F.Titolo, F.Regista, F.Genere, F.AnnoProduzione, F.Nazionalita, F.Durata, A.Nome FROM 001_FILM AS F, 001_ATTORI AS A, 001_RECITA AS R
+             WHERE F.Titolo = '$Titolo' AND F.CodFilm = R.CodFilm AND A.CodAttore = R.CodAttore";
     $result = mysqli_query($connect, $query)
         or die ("Errore nella query <br>" . mysqli_error($connect));
 
@@ -39,6 +40,7 @@ include "parameters.php";
                 print("<p class='card-text'><small><span style='color:red;'>Anno: </span>$search[AnnoProduzione]</small></p>");
                 print("<p class='card-text'><small><span style='color:red;'>Nazionalità: </span>$search[Nazionalita]</small></p>");
                 print("<p class='card-text'><small><span style='color:red;'>Durata: </span>$search[Durata] minuti</small></p>");
+                print("<p class='card-text'><small><span style='color:red;'>Attore principale: </span><a href='attori.php'>$search[Nome]</a></small></p>");
             print("</div>");
         print("</div>");
         print("</div>");
