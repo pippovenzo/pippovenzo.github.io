@@ -57,8 +57,10 @@ include "parameters.php"
         <div class="card border-0" style="width: 18rem;">
         <img src="images/<?php print("$search[Nome].jpg");?>" class='card-img-top'>
             <div class="card-body">
-                <h5 class='card-title'><?php print("$search[Nome]") ?></h5>
-                <p class='card-text'><span style='color:red;'>Citta: </span><?php print("$search[Citta]"); ?></p>
+                <form method='get' name='form' action='details.php'>
+                <input type="hidden" name="Tipo" value="3" /> 
+                    <h5 class='card-title'><input type='submit' value="<?php print("$search[Nome]");?>" name='Titolo'></h5>
+                </form>
                 </div>
         </div>
         </div>
