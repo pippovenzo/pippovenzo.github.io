@@ -96,7 +96,7 @@ include "parameters.php";
             }
             break;
         default:
-            die("troio");
+            die("Error");
     }
     
     ?>
