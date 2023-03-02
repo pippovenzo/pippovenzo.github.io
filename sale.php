@@ -57,13 +57,16 @@ include "parameters.php"
         <div class="card border-0" style="width: 18rem;">
         <img src="images/<?php print("$search[Nome].jpg");?>" class='card-img-top'>
             <div class="card-body">
-                <h5 class='card-title'><?php print("$search[Nome]") ?></h5>
-                <p class='card-text'><span style='color:red;'>Citta: </span><?php print("$search[Citta]"); ?></p>
+                <form method='get' name='form' action='details.php'>
+                <input type="hidden" name="Tipo" value="3" /> 
+                    <h5 class='card-title'><input type='submit' value="<?php print("$search[Nome]");?>" name='Titolo'></h5>
+                </form>
                 </div>
         </div>
         </div>
         <?php
-    }   
+    }  
+     
     ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
