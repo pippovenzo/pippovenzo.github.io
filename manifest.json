@@ -1,0 +1,16 @@
+{
+    "scope": "/",
+    "name" : "Nuovo cinema paradiso",
+    "short_name": "cinema",
+    "start_url" : "/?home=index.php",
+    "icons" : [
+        {"src": "cinema.png",
+        "type": "image/png"
+        }
+    ],
+    "theme_color": "#000000",
+    "background_color" : "#FFFFFF",
+    "display": "fullscreen",
+    "orientation": "portrait"
+
+}
