@@ -4,8 +4,10 @@
     "short_name": "cinema",
     "start_url" : "/?home=index.php",
     "icons" : [
-        {"src": "cinema.png",
-        "type": "image/png"
+        {
+        "src": "cinema.png",
+        "type": "image/png",
+        "size": "512x512"
         }
     ],
     "theme_color": "#000000",

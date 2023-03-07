@@ -48,7 +48,7 @@ include "parameters.php";
                         <p class='card-text'><small><span style='color:red;'>Anno: </span><?php print("$search[AnnoProduzione]"); ?></small></p>
                         <p class='card-text'><small><span style='color:red;'>Nazionalità: </span><?php print("$search[Nazionalita]"); ?></small></p>
                         <p class='card-text'><small><span style='color:red;'>Durata: </span><?php print("$search[Durata]"); ?> minuti</small></p>
-                        <p class='card-text'><small><span style='color:red;'>Attore principale: </span><a href='attori.php'><?php print("$search[Nome]"); ?></a></small></p>
+                        <p class='card-text'><small><span style='color:red;'>Attore principale: </span><a href='details.php?Tipo=2&Titolo=<?php print("$search[Nome]"); ?>'> <?php print("$search[Nome]"); ?></a></small></p>
                     </div>
                 </div>
                 </div>
